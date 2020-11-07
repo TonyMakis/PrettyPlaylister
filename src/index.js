@@ -1,12 +1,22 @@
+/* React setup */
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+/* Redux Setup */
+import { Provider } from 'react-redux';
+
+/* Styles, Scripts, and Components */
+import { store } from './redux/store/configureStore';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// Main React Root Injector
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
