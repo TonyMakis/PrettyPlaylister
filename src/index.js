@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom';
 
 /* Redux Setup */
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 /* Styles, Scripts, and Components */
-import { store } from './redux/store/configureStore';
+import { store, persistor } from './redux/store/configureStore';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -15,7 +16,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

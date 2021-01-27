@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 /* Redux setup */
 import { connect } from 'react-redux';
 
-import { getSpotifyUserData, getSpotifyPlaylists } from '../../redux/actions/spotifyActions';
+import { getSpotifyUserData, getSpotifyPlaylists } from '../redux/actions/spotifyActions';
 
-import '../styles/general.css';
+import './styles/general.css';
 
-import Playlists from './Playlists.jsx';
-import NavBar from '../NavBar';
+import Playlists from './Playlisting/Playlists.jsx';
+import NavBar from './NavBar';
 
 class Playlister extends Component {
    componentDidMount() {

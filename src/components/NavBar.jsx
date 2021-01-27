@@ -14,8 +14,8 @@ import { connect } from 'react-redux';
 
 import { logUserOut } from '../redux/actions/loginActions';
 
-import TransitionsModal from './UserProfileModal.jsx';
-import SearchBar from './SearchBar.jsx';
+import TransitionsModal from './NavBarComponents/UserProfileModal.jsx';
+import SearchBar from './NavBarComponents/SearchBar.jsx';
 
 const useStyles = makeStyles((theme) => ({
   mainNav: {

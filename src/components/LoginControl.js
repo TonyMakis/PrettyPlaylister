@@ -7,7 +7,7 @@ import { logUserIn } from '../redux/actions/loginActions';
 import { getHashParams, objectIsEmpty, cleanUrlParams } from '../urlParsing';
 
 import Authenticator from './Authenticator.jsx';
-import Playlister from './Playlisting/Playlister.jsx';
+import Playlister from './Playlister.jsx';
 
 import './styles/general.css';
 

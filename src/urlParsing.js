@@ -1,6 +1,7 @@
 /**
  * Obtains parameters from the hash of the URL
  * @return Object
+ * CREDIT: Spotify Auth. Code Flow Example in Docs
  */
 export function getHashParams() {
     var hashParams = {};

@@ -26,11 +26,12 @@ function SearchBar() {
 
     const onSearchChange = (event) => {
         setInputValue(event.target.value);
+        console.log(inputValue);
     };
 
     return (
         <InputBase
-            placeholder="Search…"
+            placeholder={"Search…"}
             classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

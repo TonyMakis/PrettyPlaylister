@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#2b2d2f',
   },
   profileImg: {
-    width: '65%',
+    width: '50%',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '-2em',
