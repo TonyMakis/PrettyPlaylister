@@ -11,6 +11,7 @@ export function organizePlaylistsPayload(res) {
         playlist = {};
         playlist.id = res.items[i].id;
         playlist.name = res.items[i].name;
+        playlist.numTracks = res.items[i].tracks.total;
         playlist.description = res.items[i].description;
         playlist.publicType = res.items[i].public
         playlist.collabType = res.items[i].collaborative;
@@ -19,4 +20,58 @@ export function organizePlaylistsPayload(res) {
     }
 
     return payload;
+}
+
+export function organizeTracksPayload(res) {
+    let payload = {}, track = {}, artist = {};
+    payload.items = [];
+    
+    for(let i in res.items) {
+        track = {};
+        track.id = res.items[i].track.id;
+        track.dateAdded = res.items[i].added_at;
+        track.duration = res.items[i].track.duration_ms;
+        track.explicit = res.items[i].track.explicit;
+        track.name = res.items[i].track.name;
+        track.popularity = res.items[i].track.popularity;
+        track.type = res.items[i].track.type;
+        track.artists = [];
+        for(let j in res.items[i].track.artists) {
+            artist = {};
+            artist.id = res.items[i].track.artists[j].id;
+            artist.name = res.items[i].track.artists[j].name;
+            artist.type = res.items[i].track.artists[j].type;
+            track.artists.push(artist);
+        }
+        payload.items.push(track);
+    }
+
+    return payload;
+}
+
+
+async function fetchPlaylistTracks(token, playlistId, offset) {
+    const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?offset=${offset}&limit=100`;
+    const setHeaders = { headers: { Authorization: `Bearer ${token}` } };
+    const res = await fetch(url, setHeaders);
+    const data = await res.json();
+    return data;
+}
+ 
+export async function getAllTracks(token, playlistId) {
+    var offset = 0;
+    const limit = 100;
+    var items = [];
+
+    var result = await fetchPlaylistTracks(token, playlistId, offset);
+    var total = result.total;
+    items.push(...result.items);
+
+    while((offset + limit) < total) {
+        offset += limit;
+        result = await fetchPlaylistTracks(token, playlistId, offset);
+        items.push(...result.items);
+    }
+    
+    return {'items': items};
 }

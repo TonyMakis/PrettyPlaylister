@@ -1,12 +1,27 @@
+// React & Routing
 import React from 'react';
-import LoginControl from './components/LoginControl';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+// Components
+import LoginControl from './components/LoginControl.jsx';
+import Playlister from './components/Playlister.jsx';
+import TrackLister from './components/TrackLister.jsx';
+
+export default function App() {
   return (
-    <div id="mainScreen">
-      <LoginControl />
-    </div>
+    <Router>
+      <Switch>
+        <>
+          <Route exact path='/PrettyPlaylister' component={LoginControl} />
+          <Route exact path='/PrettyPlaylister/playlists' component={Playlister}/>
+          <Route
+            path={`/PrettyPlaylister/playlists/:playlistId`}
+            render={({match}) => (
+              <TrackLister playlistId={match.params.playlistId}/>
+            )}
+          />
+        </>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 
+// Components
 import LoadSpinner from './LoadSpinner.jsx';
 
 export default function Authenticator() {
     const [isLoading, setLoading] = useState(false);
-
     let content;
-    
-    if(isLoading) {
-        content = <LoadSpinner />;
-    } else {
-        content =   
+
+    (isLoading)
+        ? content = <LoadSpinner />
+        : content =
             <div id="welcome">
                 <h1 className="titleText">Pretty Playlister</h1>
                 <br />
@@ -19,7 +18,7 @@ export default function Authenticator() {
                      src={require("./img/spotify.png")}/>
                 <br />
                 <a href="https://pretty-playlister-auth.herokuapp.com/login">
-                    <button 
+                    <button
                         id="loginBtn"
                         className="centerBlock"
                         onClick={() => setLoading(!isLoading)}
@@ -28,7 +27,6 @@ export default function Authenticator() {
                     </button>
                 </a>
             </div>;
-    }
 
     return (
         <div className="central">{content}</div>

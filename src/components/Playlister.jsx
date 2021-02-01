@@ -1,17 +1,23 @@
+// React, Redux, & Actions
 import React, { Component } from 'react';
-
-/* Redux setup */
 import { connect } from 'react-redux';
+import {
+   getSpotifyUserData,
+   getSpotifyPlaylists,
+   clearSpotifyTracks
+} from '../redux/actions/spotifyActions';
 
-import { getSpotifyUserData, getSpotifyPlaylists } from '../redux/actions/spotifyActions';
+import { clearSelectedTracks } from '../redux/actions/trackSelectionActions';
 
-import './styles/general.css';
-
+// Components & Styles
 import Playlists from './Playlisting/Playlists.jsx';
-import NavBar from './NavBar';
+import NavBar from './NavBarComponents/NavBar.jsx';
+import './styles/general.css';
 
 class Playlister extends Component {
    componentDidMount() {
+      this.props.clearSpotifyTracks();
+      this.props.clearSelectedTracks();
       const {accessToken, error} = this.props;
       if(accessToken) {
          this.props.getSpotifyUserData(accessToken);
@@ -20,14 +26,21 @@ class Playlister extends Component {
    }
 
    render() {
-      const { displayName, profileImgUrl, playlists, totalPlaylists, loadingPlaylists } = this.props;
+      const {
+         displayName, profileImgUrl, playlists, totalPlaylists, loadingPlaylists
+      } = this.props;
+
       return (
          <div id="mainNav">
-            <NavBar displayName={displayName} imageUrl={profileImgUrl} />
+            <NavBar
+               searchable={true}
+               navName={`Playlists (${totalPlaylists})`}
+               displayName={displayName}
+               imageUrl={profileImgUrl}
+            />
             <Playlists
                isLoading={loadingPlaylists}
                playlists={playlists}
-               totalPlaylists={totalPlaylists}
             />
          </div>
       );
@@ -35,13 +48,15 @@ class Playlister extends Component {
 }
 
 const mapStateToProps = (state) => { 
-   return {...state.userProfile, ...state.userPlaylists} 
+   return {...state.login, ...state.userProfile, ...state.userPlaylists} 
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSpotifyUserData: (token) => { dispatch(getSpotifyUserData(token)); },
-        getSpotifyPlaylists: (token) => { dispatch(getSpotifyPlaylists(token)) }
+        getSpotifyPlaylists: (token) => { dispatch(getSpotifyPlaylists(token)); },
+        clearSpotifyTracks: () => { dispatch(clearSpotifyTracks()) },
+        clearSelectedTracks: () => { dispatch(clearSelectedTracks()) }
     };
 }
 

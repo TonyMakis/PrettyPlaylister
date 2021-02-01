@@ -1,17 +1,15 @@
+// React, Redux, and Routing
 import React, { Component } from 'react';
-
-/* Redux setup */
 import { connect } from 'react-redux';
-
 import { logUserIn } from '../redux/actions/loginActions';
+import { Redirect } from "react-router-dom";
+
+// Components, Styles, and Scripts
+import Authenticator from './Authenticator.jsx';
+import './styles/general.css';
 import { getHashParams, objectIsEmpty, cleanUrlParams } from '../urlParsing';
 
-import Authenticator from './Authenticator.jsx';
-import Playlister from './Playlister.jsx';
-
-import './styles/general.css';
-
-class LoginControl extends Component { 
+class LoginControl extends Component {
     componentDidMount() {
         let params = getHashParams();
         if(!objectIsEmpty(params)) {
@@ -21,18 +19,12 @@ class LoginControl extends Component {
     }
 
     render() {
-        const { isLoggedIn, accessToken, error } = this.props;
-        
+        const { isLoggedIn } = this.props;
         let dynamicLogin;
-        
-        if(!isLoggedIn) {
-            dynamicLogin = <Authenticator />
-        } else {
-            dynamicLogin = 
-            <div id="playlister">
-                <Playlister accessToken={accessToken} error={error} />
-            </div>
-        }
+
+        (!isLoggedIn)
+            ? dynamicLogin = <Authenticator />
+            : dynamicLogin = <Redirect to={'/PrettyPlaylister/playlists'} />;
 
         return (
             <div id="loginCtrl">{dynamicLogin}</div>

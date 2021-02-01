@@ -3,11 +3,17 @@ import { all, put, takeEvery } from 'redux-saga/effects';
 import {
     GET_SPOTIFY_USER_DATA,
     GET_SPOTIFY_PLAYLISTS,
+    GET_SPOTIFY_TRACKS,
     GET_SPOTIFY_USER_DATA_SAGA,
-    GET_SPOTIFY_PLAYLISTS_SAGA
+    GET_SPOTIFY_PLAYLISTS_SAGA,
+    GET_SPOTIFY_TRACKS_SAGA
 } from '../actions/actionTypes';
 
-import { organizePlaylistsPayload } from './sagaDataHelpers';
+import {
+    getAllTracks,
+    organizePlaylistsPayload,
+    organizeTracksPayload
+} from './sagaDataHelpers';
 
 export function* getSpotifyUserDataSaga(action) {
     const url = 'https://api.spotify.com/v1/me';
@@ -26,6 +32,15 @@ export function* getSpotifyPlaylistsSaga(action) {
     yield put({ type: GET_SPOTIFY_PLAYLISTS, payload });
 }
 
+export function* getSpotifyTracksSaga(action) {
+    const res = yield getAllTracks(
+        action.playlistData.token,
+        action.playlistData.playlistId
+    );
+    const payload = yield organizeTracksPayload(res);
+    yield put({ type: GET_SPOTIFY_TRACKS, payload });
+}
+
 export function* watchGetSpotifyUserDataSaga() {
     yield takeEvery(GET_SPOTIFY_USER_DATA_SAGA, getSpotifyUserDataSaga);
 }
@@ -34,9 +49,14 @@ export function* watchGetSpotifyPlaylistsSaga() {
     yield takeEvery(GET_SPOTIFY_PLAYLISTS_SAGA, getSpotifyPlaylistsSaga);
 }
 
+export function* watchGetSpotifyTracksSaga() {
+    yield takeEvery(GET_SPOTIFY_TRACKS_SAGA, getSpotifyTracksSaga);
+}
+
 export default function* rootSaga() {
     yield all([
         watchGetSpotifyUserDataSaga(),
-        watchGetSpotifyPlaylistsSaga()
+        watchGetSpotifyPlaylistsSaga(),
+        watchGetSpotifyTracksSaga()
     ]);
 }

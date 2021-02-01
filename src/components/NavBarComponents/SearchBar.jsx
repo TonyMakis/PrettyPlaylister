@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
+// Material-UI's React Library
+import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchBar() {
-    const [inputValue, setInputValue] = React.useState('');
-
     const classes = useStyles();
+    const [inputValue, setInputValue] = React.useState('');
 
     const onSearchChange = (event) => {
         setInputValue(event.target.value);
@@ -32,7 +32,7 @@ function SearchBar() {
     return (
         <InputBase
             placeholder={"Search…"}
-            classes={{
+            classes={{ // Override InputBase Default Styles
                 root: classes.inputRoot,
                 input: classes.inputInput,
             }}

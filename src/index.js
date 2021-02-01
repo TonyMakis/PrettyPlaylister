@@ -3,13 +3,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 /* Redux Setup */
+// Redux State Store
 import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store/configureStore';
+// Redux Persist
 import { PersistGate } from 'redux-persist/integration/react';
 
-/* Styles, Scripts, and Components */
-import { store, persistor } from './redux/store/configureStore';
-import './index.css';
+/* Components, Styles, and Scripts */
 import App from './App';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 // Main React Root Injector

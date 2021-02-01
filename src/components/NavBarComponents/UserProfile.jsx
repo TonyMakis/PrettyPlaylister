@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
+// Material-UI's React Library
 import {
     List,
     ListItem,
@@ -8,47 +8,21 @@ import {
     ListItemAvatar
 } from '@material-ui/core';
 
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import EmailIcon from '@material-ui/icons/Email';
-import PeopleIcon from '@material-ui/icons/People';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import LanguageIcon from '@material-ui/icons/Language';
+import {
+    AccountCircle,
+    Email as EmailIcon,
+    People as PeopleIcon,
+    AccountBalance as AccountBalanceIcon,
+    Language as LanguageIcon
+} from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: '1em',
-    width: '100%',
-    maxWidth: 360,
-    color: theme.palette.common.white,
-    backgroundColor: '#2b2d2f',
-  },
-  profileImg: {
-    width: '50%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '-2em',
-    display: 'block',
-    borderRadius: '100px',
-    border: '1px solid black',
-    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-  },
-  profileItemInfo: {
-    position: 'absolute',
-    color: 'lightgray',
-    fontSize: 'medium',
-    marginLeft: '3.5em',
-    marginBottom: '3em'
-  },
-  listItem: {
-      marginBottom: '0.5em'
-  }
-}));
+// Styles
+import useStyles from './styles/UserProfileStyles';
 
 export default function UserProfile({
     displayName, country, email, numFollowers, productType, profileImgUrl
 }) {
   const classes = useStyles();
-
   return (
     <div id="userProfile">
         <img className={classes.profileImg} src={profileImgUrl} alt={displayName}/>

@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.spinnerCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .centerBlock {
     display: block;
     margin-left: auto;
@@ -37,6 +43,16 @@ a {
 
 #authLoadSpinner {
     color: white;
+}
+
+#tableTitle {
+    font: bold 2em arial, sans-serif;
+    background-color: #565656;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+    -webkit-background-clip: text;
+        -moz-background-clip: text;
+            background-clip: text;
 }
 
 .titleText {
