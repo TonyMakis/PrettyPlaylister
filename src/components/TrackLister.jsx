@@ -1,6 +1,7 @@
-// React & Redux
+// React, Redux, & Routing
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 // Components & Styles
 import NavBar from './NavBarComponents/NavBar.jsx';
@@ -8,9 +9,11 @@ import TracksCard from './Tracklisting/TracksCard.jsx';
 import './styles/general.css';
 
 function TrackLister({ playlistId, displayName, profileImgUrl, playlists }) {
+    let history = useHistory();
     const playlist = playlists.find(({id}) => id === playlistId);
-    return (
-        <div id="mainNav">
+    let content = <></>;
+    if(playlist) {
+        content = <div id="mainNav">
             <NavBar
                 searchable={false}
                 navName={`Tracks (${playlist.numTracks})`}
@@ -18,7 +21,13 @@ function TrackLister({ playlistId, displayName, profileImgUrl, playlists }) {
                 imageUrl={profileImgUrl}
             />
             <TracksCard playlist={playlist} />
-        </div>
+        </div>;
+    } else {
+        history.push('/');
+    }
+
+    return (
+        <>{content}</>
    );
 }
 

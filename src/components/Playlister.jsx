@@ -1,4 +1,4 @@
-// React, Redux, & Actions
+// React, Redux, Actions, & Routing
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -8,6 +8,8 @@ import {
 } from '../redux/actions/spotifyActions';
 
 import { clearSelectedTracks } from '../redux/actions/trackSelectionActions';
+
+import { Redirect } from "react-router-dom";
 
 // Components & Styles
 import Playlists from './Playlisting/Playlists.jsx';
@@ -27,22 +29,28 @@ class Playlister extends Component {
 
    render() {
       const {
-         displayName, profileImgUrl, playlists, totalPlaylists, loadingPlaylists
+         isLoggedIn, displayName, profileImgUrl, playlists, totalPlaylists, loadingPlaylists
       } = this.props;
 
+      let content;
+
+      (isLoggedIn)
+      ? content = <div id="mainNav">
+         <NavBar
+            searchable={true}
+            navName={`Playlists (${totalPlaylists})`}
+            displayName={displayName}
+            imageUrl={profileImgUrl}
+         />
+         <Playlists
+            isLoading={loadingPlaylists}
+            playlists={playlists}
+         />
+      </div>
+      : content = <Redirect to={'/'} />;
+
       return (
-         <div id="mainNav">
-            <NavBar
-               searchable={true}
-               navName={`Playlists (${totalPlaylists})`}
-               displayName={displayName}
-               imageUrl={profileImgUrl}
-            />
-            <Playlists
-               isLoading={loadingPlaylists}
-               playlists={playlists}
-            />
-         </div>
+         <>{content}</>
       );
    }
 }

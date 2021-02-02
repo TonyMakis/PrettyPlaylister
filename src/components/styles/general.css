@@ -5,6 +5,14 @@
     align-items: center;
 }
 
+.central-404 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .spinnerCenter {
     display: flex;
     justify-content: center;
@@ -68,9 +76,31 @@ a {
     color: #fff;
 }
 
+.bigTitleText {
+    display: block;
+    margin-bottom: 0.3em !important;
+    margin-top: 0em !important;
+    font-size: 5em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-shadow: 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    text-align: center;
+    color: #fff;
+}
+
 .mainImg {
     width: 45%;
     border-radius: 88px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 1.2em;
+}
+
+.errorDiskImg {
+    width: 30vw;
+    border-radius: 16em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 1.2em;
 }
@@ -83,11 +113,24 @@ i {
     animation: rotation 8s infinite linear;
 }
 
+.rotateCCW {
+    animation: rotationCCW 10s infinite linear;
+}
+
 @keyframes rotation {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(359deg);
+    }
+}
+
+@keyframes rotationCCW {
+    from {
+        transform: rotate(359deg);
+    }
+    to {
+        transform: rotate(0deg);
     }
 }

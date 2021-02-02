@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginControl from './components/LoginControl.jsx';
 import Playlister from './components/Playlister.jsx';
 import TrackLister from './components/TrackLister.jsx';
+import FourZeroFour from './components/FourZeroFour.jsx';
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <>
           <Route exact path='/PrettyPlaylister' component={LoginControl} />
           <Route exact path='/PrettyPlaylister/playlists' component={Playlister}/>
           <Route
@@ -20,7 +20,7 @@ export default function App() {
               <TrackLister playlistId={match.params.playlistId}/>
             )}
           />
-        </>
+          <Route component={FourZeroFour} />
       </Switch>
     </Router>
   );
