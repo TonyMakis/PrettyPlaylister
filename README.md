@@ -3,7 +3,7 @@
 <img
     src="./readmeImgs/Framework.png"
     alt="React"
-    width="350"
+    width="400"
 />
 
 ---
