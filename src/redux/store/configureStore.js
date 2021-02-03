@@ -1,6 +1,6 @@
 /* Redux Setup */
 import { createStore, applyMiddleware } from 'redux';
-import { logger } from 'redux-logger';
+// import { logger } from 'redux-logger';
 
 import { persistStore } from 'redux-persist';
 
@@ -14,7 +14,7 @@ import rootReducer from '../reducers/rootReducer';
 const sagaMiddleware = createSagaMiddleware();
 
 // Logger is for viewing actions and reducers; uncomment if needed
-const middlewares = [sagaMiddleware, logger];
+const middlewares = [sagaMiddleware/*, logger*/];
 
 // Redux store connections & config
 export const store = createStore(
