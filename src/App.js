@@ -12,10 +12,10 @@ export default function App() {
   return (
     <Router>
       <Switch>
-          <Route exact path='/PrettyPlaylister' component={LoginControl} />
-          <Route exact path='/PrettyPlaylister/playlists' component={Playlister}/>
+          <Route exact path='/' component={LoginControl} />
+          <Route exact path='/playlists' component={Playlister}/>
           <Route
-            path={`/PrettyPlaylister/playlists/:playlistId`}
+            path={`/playlists/:playlistId`}
             render={({match}) => (
               <TrackLister playlistId={match.params.playlistId}/>
             )}

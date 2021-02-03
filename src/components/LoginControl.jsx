@@ -24,7 +24,7 @@ class LoginControl extends Component {
 
         (!isLoggedIn)
             ? dynamicLogin = <Authenticator />
-            : dynamicLogin = <Redirect to={'/PrettyPlaylister/playlists'} />;
+            : dynamicLogin = <Redirect to={'/playlists'} />;
 
         return (
             <div id="loginCtrl">{dynamicLogin}</div>

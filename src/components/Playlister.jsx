@@ -47,7 +47,7 @@ class Playlister extends Component {
             playlists={playlists}
          />
       </div>
-      : content = <Redirect to={'/'} />;
+      : content = <Redirect to={'/404'} />;
 
       return (
          <>{content}</>

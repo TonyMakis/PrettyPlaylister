@@ -41,11 +41,11 @@ function NavBar({searchable, navName, displayName, imageUrl, logUserOut}) {
 
   const logOutClick = () => {
     logUserOut();
-    history.push('/PrettyPlaylister');
+    history.push('/');
   }
 
   const goHome = () => {
-    history.push('/PrettyPlaylister/playlists');
+    history.push('/playlists');
   }
 
   const menuId = 'primary-search-account-menu';

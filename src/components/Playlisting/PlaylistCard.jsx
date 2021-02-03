@@ -16,7 +16,7 @@ import useStyles from './styles/PlaylistCardStyles';
 export default function PlaylistCard({playlist}) {
   const classes = useStyles();
   return (
-    <Link to={`/PrettyPlaylister/playlists/${playlist.id}`} >
+    <Link to={`/playlists/${playlist.id}`} >
         <Card className={classes.root}>
             <CardContent className={classes.content}>
                 <Typography className="titleText" noWrap>{playlist.name}</Typography>

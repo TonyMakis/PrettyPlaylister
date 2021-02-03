@@ -23,7 +23,7 @@ function TrackLister({ playlistId, displayName, profileImgUrl, playlists }) {
             <TracksCard playlist={playlist} />
         </div>;
     } else {
-        history.push('/');
+        history.push('/404');
     }
 
     return (

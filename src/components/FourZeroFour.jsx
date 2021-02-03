@@ -30,7 +30,7 @@ class FourZeroFour extends Component {
                      alt="Record Disk 404, Rotating"
                      src={require("./img/Disk.png")}
                     />
-                    <Link to={'/PrettyPlaylister'} >
+                    <Link to={'/'} >
                         <button
                             id="loginBtn"
                             className="centerBlock"
