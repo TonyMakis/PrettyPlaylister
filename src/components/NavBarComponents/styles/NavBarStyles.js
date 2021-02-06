@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
       },
     },
+    altTitle: {
+      display: 'block',
+    },
     userName: {
       cursor: 'pointer',
       marginTop: '15px',

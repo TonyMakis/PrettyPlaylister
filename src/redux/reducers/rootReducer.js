@@ -7,6 +7,7 @@ import spotifyUserReducer from './spotifyUserReducer';
 import spotifyPlaylistReducer from './spotifyPlaylistReducer';
 import spotifyTracksReducer from './spotifyTracksReducer';
 import trackSelectionReducer from './trackSelectionReducer';
+import clipboardCopyReducer from './clipboardCopyReducer';
 
 const persistConfig = {
     key: 'root',
@@ -16,7 +17,8 @@ const persistConfig = {
         'userProfile',
         'userPlaylists',
         'playlistTracks',
-        'selectedTracks'
+        'selectedTracks',
+        'clipboardCopy'
     ],
 };
 
@@ -25,7 +27,8 @@ const rootReducer = combineReducers({
     userProfile: spotifyUserReducer,
     userPlaylists: spotifyPlaylistReducer,
     playlistTracks: spotifyTracksReducer,
-    selectedTracks: trackSelectionReducer
+    selectedTracks: trackSelectionReducer,
+    clipboardCopy: clipboardCopyReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

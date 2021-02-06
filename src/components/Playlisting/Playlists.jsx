@@ -30,7 +30,7 @@ export default function Playlists({ isLoading, playlists }) {
         <Grid container style={{ padding: '0.5em' }}>
           {playlists.map((playlist) => (
             <Grid item className={classes.gridSpacing}
-              xs={6} sm={6} md={4} lg={3} xl={2} key={playlist.id}>
+              xs={6} sm={4} md={4} lg={3} xl={2} key={playlist.id}>
               <PlaylistCard playlist={playlist} />
             </Grid>
           ))}

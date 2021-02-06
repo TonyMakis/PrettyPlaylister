@@ -36,7 +36,7 @@ const useToolbarStyles = makeStyles((theme) => ({
   
 export default function EnhancedTableToolbar(props) {
     const classes = useToolbarStyles();
-    const { numSelected, title } = props;
+    const { numSelected, numAvailable, title } = props;
   
     return (
       <Toolbar
@@ -52,7 +52,7 @@ export default function EnhancedTableToolbar(props) {
             variant="subtitle1"
             component="div"
           >
-            {numSelected} selected
+            {numSelected} of {numAvailable} selected
           </Typography>
         ) : (
           <Typography

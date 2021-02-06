@@ -64,6 +64,17 @@ function NavBar({searchable, navName, displayName, imageUrl, logUserOut}) {
     </Menu>
   );
 
+  const title = (searchable)
+    ? (
+      <Typography className={classes.title} variant="h6" noWrap>
+        {navName}
+      </Typography>
+    ) : (
+      <Typography className={classes.altTitle} variant="h6" noWrap>
+        {navName}
+      </Typography>
+    );
+
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.mainNav}>
@@ -77,9 +88,7 @@ function NavBar({searchable, navName, displayName, imageUrl, logUserOut}) {
           >
             <HomeIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            {navName}
-          </Typography>
+          {title}
           {(searchable) ? 
             <div className={classes.search}>
               <div className={classes.searchIcon}>

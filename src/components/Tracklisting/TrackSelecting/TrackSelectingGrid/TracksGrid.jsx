@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setSelectedTracks } from '../../../../redux/actions/trackSelectionActions';
+import { clearClipCopyData } from '../../../../redux/actions/copyDataActions';
 
 // Material-UI's React Library
 import { withStyles } from '@material-ui/core/styles';
@@ -98,6 +99,7 @@ class TracksGrid extends Component {
   componentDidMount() {
     const { tracksSelected } = this.props;
     this.setState({ selected: tracksSelected });
+    this.props.clearClipCopyData();
   }
 
   render() {
@@ -153,7 +155,11 @@ class TracksGrid extends Component {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <EnhancedTableToolbar title={playlist.name} numSelected={this.state.selected.length} />
+          <EnhancedTableToolbar
+            title={playlist.name}
+            numSelected={this.state.selected.length}
+            numAvailable={playlist.numTracks}
+          />
           <TableContainer className={classes.container}>
             <Table
               className={classes.table}
@@ -238,6 +244,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
    return {
        setSelectedTracks: (trackData) => { dispatch(setSelectedTracks(trackData)); },
+       clearClipCopyData: () => { dispatch(clearClipCopyData()); }
    };
 }
 

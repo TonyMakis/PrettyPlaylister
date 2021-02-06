@@ -1,19 +1,27 @@
-// React
+// React & Redux
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Material-UI's React Library
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  Snackbar,
+  Button
+} from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
-// Components & Styles
+// Components, Scripts, & Styles
 import TracksGrid from './TrackSelectingGrid/TracksGrid.jsx';
 import LoadSpinner from '../../LoadSpinner.jsx';
+import CopyFormatSelect from '../TracksCopying/CopyFormatSelect.jsx';
 import { ColorlibConnector, ColorlibStepIcon } from './ColorLibSteps.jsx'
 import useStyles from './styles/TrackSelectStepperStyles';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function getSteps() {
   return ['Select', 'Copy'];
@@ -26,15 +34,16 @@ function getStepContent(step, playlist, loadingTracks, tracks) {
         ? <LoadSpinner />
         : <TracksGrid playlist={playlist} tracks={tracks} />;
     case 1:
-      return 'Copy!';
+      return <CopyFormatSelect tracks={tracks} />;
     default:
-      return 'WHAT NOW!';
+      return <LoadSpinner />;
   }
 }
 
-export default function TrackSelectStepper({ playlist, loadingTracks, tracks }) {
+function TrackSelectStepper({ playlist, loadingTracks, tracks, clipCopyData }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
   const steps = getSteps();
 
   const handleNext = () => {
@@ -45,8 +54,15 @@ export default function TrackSelectStepper({ playlist, loadingTracks, tracks }) 
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
@@ -73,16 +89,7 @@ export default function TrackSelectStepper({ playlist, loadingTracks, tracks }) 
         ))}
       </Stepper>
       <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
+        {(
           <div>
             {getStepContent(activeStep, playlist, loadingTracks, tracks)}
             <div>
@@ -95,18 +102,41 @@ export default function TrackSelectStepper({ playlist, loadingTracks, tracks }) 
               >
                 Back
               </Button>
-              <Button
-                variant="contained"
-                color={'secondary'}
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
+              {activeStep === steps.length - 1 
+                ? <Button
+                    id="copyBtn"
+                    data-clipboard-text={clipCopyData}
+                    variant="contained"
+                    color={'secondary'}
+                    className={classes.button}
+                    onClick={handleOpen}
+                  >
+                    Copy
+                  </Button>
+                : <Button
+                    variant="contained"
+                    color={'secondary'}
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    Next
+                  </Button>
+              }
             </div>
           </div>
         )}
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} >
+          Data Copied Successfully!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
+
+const mapStateToProps = (state) => { 
+  return { ...state.clipboardCopy }
+};
+
+export default connect(mapStateToProps, null)(TrackSelectStepper);

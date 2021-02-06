@@ -1,3 +1,36 @@
+html, body, pre, .MuiTableContainer-root {
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+pre::-webkit-scrollbar, .MuiTableContainer-root::-webkit-scrollbar {
+    width: 20px;
+}
+
+pre::-webkit-scrollbar-track, .MuiTableContainer-root::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+pre::-webkit-scrollbar-thumb, .MuiTableContainer-root::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+pre::-webkit-scrollbar-thumb:hover, .MuiTableContainer-root::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+#error { 
+    background: url(../img/clouds.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .central {
     min-height: 100vh;
     display: flex;
