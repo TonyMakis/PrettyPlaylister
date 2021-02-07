@@ -2,7 +2,7 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "uninitialized.application.id",
+    "package_name": "com.prettyplaylister",
     "sha256_cert_fingerprints":
     ["A8:B8:59:6B:85:36:B1:3D:31:8F:A3:F6:23:BA:39:8F:54:68:83:A4:87:8F:21:34:07:F9:C7:1A:F3:55:72:96"]
   }
