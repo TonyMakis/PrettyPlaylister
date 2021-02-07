@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setSearchTerm } from '../../redux/actions/searchBarActions';
 
 // Material-UI's React Library
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,13 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SearchBar() {
+function SearchBar({ setSearchTerm }) {
     const classes = useStyles();
-    const [inputValue, setInputValue] = React.useState('');
 
     const onSearchChange = (event) => {
-        setInputValue(event.target.value);
-        console.log(inputValue);
+        setSearchTerm(event.target.value);
     };
 
     return (
@@ -42,4 +42,10 @@ function SearchBar() {
     );
 }
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setSearchTerm: (searchData) => { dispatch(setSearchTerm(searchData)); }
+    };
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

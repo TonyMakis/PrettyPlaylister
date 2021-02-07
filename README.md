@@ -1,4 +1,4 @@
-# [Pretty Playlister](https://prettyplaylister.com) | [![Netlify Status](https://api.netlify.com/api/v1/badges/6d50399f-e75f-4db4-96d0-79710bed8165/deploy-status)](https://app.netlify.com/sites/prettyplaylister/deploys)
+# ✨ [Pretty Playlister](https://prettyplaylister.com) | [![Netlify Status](https://api.netlify.com/api/v1/badges/6d50399f-e75f-4db4-96d0-79710bed8165/deploy-status)](https://app.netlify.com/sites/prettyplaylister/deploys)
 
 <img
     src="./readmeImgs/Framework.png"
