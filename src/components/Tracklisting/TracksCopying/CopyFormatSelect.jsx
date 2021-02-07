@@ -62,7 +62,7 @@ class CopyFormatSelect extends Component {
       value: 0,
       json: "",
       csv: "",
-      excel: ""
+      // excel: ""
     };
   }
 
@@ -75,7 +75,7 @@ class CopyFormatSelect extends Component {
     this.setState({
       json: JSON.stringify(tracksToFormat, undefined, 4),
       csv: jsonToCsv(tracksToFormat, false),
-      excel: jsonToCsv(tracksToFormat, true)
+      // excel: jsonToCsv(tracksToFormat, true)
     });
 
     var clipboard = new ClipboardJS('#copyBtn');
@@ -91,9 +91,9 @@ class CopyFormatSelect extends Component {
       case 1:  // CSV Tab
         this.props.setClipCopyData(this.state.csv);
         break;
-      case 2:  // EXCEL Tab
-        this.props.setClipCopyData(this.state.excel);
-        break;
+      // case 2:  // EXCEL Tab
+      //   this.props.setClipCopyData(this.state.excel);
+      //   break;
       default: // Should never run this case
         this.props.setClipCopyData(this.state.json);
         break;
@@ -120,7 +120,7 @@ class CopyFormatSelect extends Component {
           >
             <Tab label="JSON" {...a11yProps(0)} />
             <Tab label="CSV" {...a11yProps(1)} />
-            <Tab label="EXCEL" {...a11yProps(2)} />
+            {/* <Tab label="EXCEL" {...a11yProps(2)} /> */}
           </Tabs>
         </AppBar>
         <TabPanel value={this.state.value} index={0}>
@@ -129,9 +129,9 @@ class CopyFormatSelect extends Component {
         <TabPanel value={this.state.value} index={1}>
             {this.state.csv}
         </TabPanel>
-        <TabPanel value={this.state.value} index={2}>
+        {/* <TabPanel value={this.state.value} index={2}>
             {this.state.excel}
-        </TabPanel>
+        </TabPanel> */}
       </div>
     );
   }
