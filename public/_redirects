@@ -1,1 +1,2 @@
-/.well-known/* /not-a-dotfile/:splat 200!
+/.well-known/assetlinks.json /.well_known/assetlinks.json 200
+/*    /index.html   200
