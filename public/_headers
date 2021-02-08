@@ -1,4 +1,4 @@
-# the stellar.toml file route
+# the assetlinks route
 /.well-known/assetlinks.json
     Access-Control-Allow-Origin: *
     Content-Type: application/json
