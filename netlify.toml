@@ -6,3 +6,14 @@
       max-age=0'''
   Content-Type = "application/json"
   X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/.well-known/assetlinks.json"
+  to = "/.well-known/assetlinks.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404 
