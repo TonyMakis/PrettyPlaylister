@@ -2,3 +2,5 @@
 /.well-known/assetlinks.json
     Access-Control-Allow-Origin: *
     Content-Type: application/json
+    cache-control: no-cache
+    cache-control: no-store
