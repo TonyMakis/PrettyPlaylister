@@ -8,7 +8,7 @@
   X-Content-Type-Options = "nosniff"
 
 [[redirects]]
-  from = "/.well-known/assetlinks.json"
+  from = "/.well-known/*"
   to = "/.well-known/assetlinks.json"
   status = 200
   force = true
